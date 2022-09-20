@@ -1,0 +1,8 @@
+.test { 
+  background: url('../images/auth/login_1.jpg') no-repeat center center fixed; 
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  
+}

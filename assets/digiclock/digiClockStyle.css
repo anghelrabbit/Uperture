@@ -1,0 +1,113 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bkg: #232946;
+  --dark: #121629;
+  --purple: #b8c1ec;
+  --pink: #eebbc3;
+  --white:#fffffe;
+}
+
+
+svg {
+    /*background-color: aqua;*/
+}
+
+body {
+  background-color: var(--bkg);
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;*/
+  /*font-size: 2rem;*/
+}
+
+h4 {
+    color: black;
+   
+ 
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4rem;
+  margin: 1rem;
+}
+
+.clock--wrapper {
+  display: grid;
+  place-items: center;
+  gap: 2rem;
+  color: var(--white);
+}
+
+.clockface {
+  filter: drop-shadow(2px 10px 10px var(--dark));
+}
+
+.ring--seconds {
+  fill: transparent;
+  stroke: var(--dark);
+  stroke-width: 5;
+  stroke-dasharray:.1 .9; 
+  stroke-dashoffset: .05;
+}
+
+.ring--hours {
+  fill: transparent;
+  stroke: var(--dark);
+  stroke-width: 10;
+  stroke-dasharray:.05 .95;
+  stroke-dashoffset: .025;
+}
+
+.ring--center {
+  fill: var(--pink);
+  stroke: var(--dark);
+  stroke-width: 2.5;
+}
+
+.hand {
+  stroke: var(--pink);
+  stroke-linecap: round;
+}
+
+.hand--hour {
+  transform: rotate(45deg);
+  stroke-width: 5;
+  stroke: var(--dark);
+}
+
+.hand--minute {
+  stroke: var(--dark);
+  transform: rotate(93deg);
+  stroke-width: 5;
+}
+
+.hand--second {
+  stroke: var(--dark);
+  transform: rotate(80deg);
+  stroke-width: 2;
+}
+
+.date {
+  fill: var(--dark);
+  font-size: 4rem;
+}
+
+.time {
+  fill: var(--dark);
+  font-size: 3rem;
+}
+
+.am-pm {
+  fill: var(--dark);
+  font-size: 2rem;
+  text-transform: uppercase;
+}

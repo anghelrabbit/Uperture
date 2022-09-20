@@ -1,0 +1,23 @@
+<IfModule mod_rewrite.c>
+   RewriteEngine on
+   RewriteBase /
+
+   # If it's not a file being accessed
+   RewriteCond %{REQUEST_FILENAME} !-f
+   # If it's not a directory being accessed
+   RewriteCond %{REQUEST_FILENAME} !-d
+   # And if it's domain.com, with or without www (no subdomain)
+   RewriteCond %{HTTP_HOST} ^(www\.)?domain\.com$
+   # Rewrite all requests to index.php adding the query
+   # string (QSA) and terminating all subsequent rewrite
+   # processings.
+   # See: https://httpd.apache.org/docs/current/rewrite/flags.html#flag_end
+   RewriteRule ^(.*)$ /index.php/$1 [END,QSA]
+
+   # If it's not starting with www
+   RewriteCond %{HTTP_HOST} !^www
+   # And is a subdomain
+   RewriteCond %{HTTP_HOST} ^([a-z0-9-]+)\.domain\.com$ [NC]
+   # Rewrite the request to index.php/test/SUBDOMAIN/whatever...
+   RewriteRule ^(.*)$ /index.php/%1/$1 [END,QSA]
+</IfModule>

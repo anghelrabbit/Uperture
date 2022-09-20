@@ -1,0 +1,55 @@
+body {
+    /* Location of the image */
+    /*background-image: url(images/sample.png);*/
+
+    /* Image is centered vertically and horizontally at all times */
+
+    /* Image doesn't repeat */
+    /*background-repeat: no-repeat;*/
+
+    /* Makes the image fixed in the viewport so that it doesn't move when 
+       the content height is greater than the image height */
+
+    /* This is what makes the background image rescale based on its container's size */
+    /*background-size: cover;*/
+
+    /* Pick a solid background color that will be displayed while the background image is loading */
+    background-color:#072F5F;
+
+    /* SHORTHAND CSS NOTATION
+     * background: url(background-photo.jpg) center center cover no-repeat fixed;
+     */
+}
+
+/* For mobile devices */
+/*@media only screen and (max-width: 767px) {
+    body {
+         The file size of this background image is 93% smaller
+         * to improve page load speed on mobile internet connections 
+        background-image: url(images/hrcore_background_mobile.png);
+    }
+}*/
+
+
+.login-shadow{
+    border: solid 1px #3895D3;
+    background-color: #282E2E;
+    border-radius:25px;
+    box-shadow: 12px 0 15px -4px rgba(30, 139, 195, 1), -12px 0 8px -4px rgba(30, 139, 195, 1);
+    -moz-box-shadow: 12px 0 15px -4px rgba(30, 139, 195, 1), -12px 0 8px -4px rgba(30, 139, 195, 1);
+    -webkit-box-shadow: 10px 0 50px 2px rgba(30, 139, 195, 1), -12px 0 20px 2px rgba(30, 139, 195, 1);
+    -o-box-shadow: 12px 0 15px -4px rgba(30, 139, 195, 1), -12px 0 8px -4px rgba(30, 139, 195, 1);
+}
+
+
+.input-focus:focus {
+    outline: none !important;
+    border:3px solid skyblue;
+    box-shadow: 0 0 11px #719ECE;
+}
+
+.input-error {
+    outline: none !important;
+    border:3px solid red;
+    box-shadow: 0 0 11px red;
+}
