@@ -40,7 +40,7 @@ class AccountApproval extends MY_Controller {
                 'assets/vendors/bower_components/sweetalert/sweetalert.min.js',
                 'assets/vendors/plugins/timepicker/bootstrap-timepicker.min.js',
                 'assets/vendors/momentjs/moment.js',
-             
+                'assets/myjs/account_approval/approve_accounts.js'
             );
 
             $this->InspectUser('menu/account_approval/account_approval', $data);
