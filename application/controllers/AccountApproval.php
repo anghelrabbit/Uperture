@@ -58,17 +58,17 @@ class AccountApproval extends MY_Controller {
 //            $disapprove = ($val->is_approve == 2) ? 'selected' : '';
 //
 //            $sub_array[] = '<select name="' . 'activate_' . $val->indx . '" onchange="activateAccount(this,' . $val->indx . ')" class="form-control"><option value="">Peding</option><option value="1" ' . $approve . '>Yes</option><option value="2" ' . $disapprove . '>No</option></select>';
-            
-            
-            
-            
-            
-            $sub_array[] = '<button class="btn" onclick="activateAccount(2, '.$val->indx.')"  style="background-color:#FF392E;color:white"><i class="fa fa-trash" style="font-size:18px"></i></button> '
-                    . '<button class="btn" onclick="activateAccount(1, '.$val->indx.')"  style="background-color:#3ED03E;color:white"><i class="fa fa-check" style="font-size:18px"></i></button>';
-            $sub_array[] = $val->lastname . " " . $val->firstname;
-            $sub_array[] = $val->address;
-            $sub_array[] = $val->contact;
+
+
+
+            $fullname = $val->lastname . " " . $val->firstname;
+
+            $sub_array[] = "<button class='btn' onclick='activateAccount(2, " . '"' . $val->profileno . '"' . ")'  style='background-color:#FF392E;color:white'><i class='fa fa-trash' style='font-size:18px'></i></button> "
+                    . "<button class='btn' onclick='activateAccount(1, " . '"' . $val->profileno . '","' . $fullname . '","' . $val->email . '"' . ")'  style='background-color:#3ED03E;color:white'><i class='fa fa-check' style='font-size:18px'></i></button>";
+            $sub_array[] = $fullname;
+//            $sub_array[] = $val->address;
             $sub_array[] = $val->email;
+            $sub_array[] = $val->contact;
             $data[] = $sub_array;
         }
 
@@ -82,10 +82,50 @@ class AccountApproval extends MY_Controller {
         echo json_encode($output);
     }
 
-    public function ApproveAccount() {
+    public function FetchAllEmployees() {
+        $result = array();
+        $result = $this->M_acc_approval->FetchAllEmployess();
+        echo json_encode($result);
+    }
+
+    public function DenyAccount() {
         $action = $this->input->post('action');
         $id = $this->input->post('id');
-        echo json_encode($this->M_acc_approval->ApproveAccount(array('is_approve' => $action), $id));
+        echo json_encode($this->M_acc_approval->ApproveAccount(
+                        array(
+                            'is_approve' => $action,
+                            'approved_by' => $this->session->userdata('profileno'),
+                            'approve_date' => date("Y-m-d h:i:s"),
+                        ), $id));
+    }
+
+    public function ApproveAccount() {
+        $action = $this->input->post('action');
+      
+            $result = $this->M_acc_approval->ApproveAccount(
+                    array(
+                        'is_approve' => $action,
+                        'datehired' => $this->input->post('acc_doh'),
+                        'depID' => $this->input->post('acc_department'),
+                        'position_stat' => $this->input->post('acc_position_stat'),
+                        'empstatus' => $this->input->post('acc_job_status'),
+                        'paysched' => $this->input->post('acc_pay_period'),
+                        'referral_person' => $this->input->post('acc_referall_person'),
+                        'approved_by' => $this->session->userdata('profileno'),
+                        'approve_date' => date("Y-m-d h:i:s"),
+//                                'resume' => $action,
+                    ), $this->input->post('txtprofileno'));
+        
+        echo json_encode($result);
+    }
+
+    public function FetchProfileNoDetails() {
+
+        $result = array('status' => false);
+        $profileno = $this->input->post('profileno');
+        $result = $this->M_acc_approval->FetchProfileNoDetails($profileno);
+
+        echo json_encode($result);
     }
 
 }

@@ -25,7 +25,7 @@ function fetchRegistry() {
     $('#account_approve_table_filter').empty();
 }
 
-function activateAccount(action, id) {
+function activateAccount(action, id, fullname, email) {
 
     if (action == 2) {
         swal({
@@ -43,7 +43,7 @@ function activateAccount(action, id) {
             }
         });
     } else {
-        approveTheAccount(action, id);
+        approveTheAccount(action, id, fullname, email);
     }
 
 }
@@ -52,6 +52,91 @@ function activateAccount(action, id) {
 function denyTheAccount(action, id) {
     $.ajax({
         data: {id: id, action: action},
+        url: 'AccountApproval/DenyAccount',
+        type: 'POST',
+        dataType: 'json'
+    }).done(function () {
+
+        swal({title: "Success",
+            type: "success",
+            show: true,
+            backdrop: 'static',
+            timer: 1600,
+            showConfirmButton: false,
+            keyboard: false},
+                function ()
+                {
+                    swal.close();
+                    fetchRegistry();
+                });
+
+    });
+}
+
+function approveTheAccount(action, id, fullname, email) {
+
+    $('div[name=modal_add_account_details]').modal({
+        show: true,
+        backdrop: 'static',
+        keyboard: false
+    });
+    $('#acc_referall_person').empty();
+    $('#txtprofileno').val(id);
+    $('#txtaction').val(action);
+    $('#acc_emp_name').val(fullname);
+    $('#acc_email_add').val(email);
+    fetchAllEmployees();
+
+}
+
+function fetchAllEmployees() {
+
+    $('#acc_referall_person').append(
+            "<option  value='0'>None</option>"
+            );
+
+    $.ajax({
+        type: 'POST',
+        url: 'AccountApproval/FetchAllEmployees',
+        data: {},
+        dataType: 'json',
+    }).done(function (result) {
+
+
+        for (var index = 0; index <= result.length - 1; index++) {
+            console.log();
+            $('#acc_referall_person').append(
+                    "<option value=" + result[index].profileno + ">" + result[index].firstname + " " + result[index].lastname + "</option>"
+                    );
+        }
+
+
+    });
+
+}
+function fetchProfileNoDetails() {
+    $.ajax({
+        type: 'POST',
+        url: 'AccountApproval/FetchProfileNoDetails',
+        data: {profileno: $('#txtprofileno').val()},
+        dataType: 'json',
+    }).done(function (result) {
+
+    });
+
+}
+
+function approveEmployeeAcc() {
+    $.ajax({
+        data: {action: $('#txtaction').val(),
+               acc_doh: $('#acc_doh').val(),
+               acc_department: $('#acc_department').val(),
+               acc_position_stat: $('#acc_position_stat').val(),
+               acc_job_status: $('#acc_job_status').val(),
+               acc_pay_period: $('#acc_pay_period').val(),
+               acc_referall_person: $('#acc_referall_person').val(),
+               txtprofileno: $('#txtprofileno').val(),
+        },
         url: 'AccountApproval/ApproveAccount',
         type: 'POST',
         dataType: 'json'
@@ -73,15 +158,6 @@ function denyTheAccount(action, id) {
     });
 }
 
-function approveTheAccount(action, id) {
-
-    $('div[name=modal_add_account_details]').modal({
-        show: true,
-        backdrop: 'static',
-        keyboard: false
-    });
-}
-
 
 function closeModal() {
     swal({
@@ -95,7 +171,7 @@ function closeModal() {
         closeOnCancel: true,
     }, function (isConfirm) {
         if (isConfirm) {
-             swal.close();
+            swal.close();
             $('div[name=modal_add_account_details]').modal('hide');
         } else {
             swal.close();

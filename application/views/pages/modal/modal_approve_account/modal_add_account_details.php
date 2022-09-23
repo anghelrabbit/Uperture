@@ -23,7 +23,9 @@
                     <div class="nav-tabs-custom">
                         <div class="tab-content">
                             <div class="active tab-pane" id="reimbursement_details">
-                                <form  id="add_account_form">
+                                <form  id="add_account_form" autocomplete="off">
+                                    <input id="txtaction" type="hidden" readonly/>
+                                    <input id="txtprofileno" type="hidden" readonly/>
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12" >
                                             <div class="form-group">
@@ -52,7 +54,7 @@
                                                     <div class="input-group-addon">
                                                         Date Officially Hired:
                                                     </div>
-                                                    <input type="date" class="form-control" name="acc_doh">
+                                                    <input type="date" class="form-control" name="acc_doh" id="acc_doh">
 
 
                                                 </div>
@@ -64,7 +66,7 @@
                                                     <div class="input-group-addon">
                                                         Name
                                                     </div>
-                                                       <input type="text" class="form-control" name="acc_emp_name">
+                                                       <input type="text" class="form-control" name="acc_emp_name" id="acc_emp_name">
                                                 </div>
                                             </div>
                                         </div>
@@ -74,7 +76,7 @@
                                                     <div class="input-group-addon">
                                                         Email Address
                                                     </div>
-                                                    <input type="text" class="form-control" name="acc_email_add">
+                                                    <input type="text" class="form-control" name="acc_email_add" id="acc_email_add">
                                                 </div>
                                             </div>
                                         </div>
@@ -85,19 +87,19 @@
                                                     <div class="input-group-addon">
                                                         Department
                                                     </div>
-                                                    <select class="form-control form-control-sm" id="request_division" name="" onchange="tabCategory('');">
+                                                    <select class="form-control form-control-sm" id="acc_department" name="acc_department">
 
-                                                        <option value="DIV-001">Business Development</option>
-                                                        <option value="DIV-002">Home Ambassadors</option>
-                                                        <option value="DIV-003">Book That Condo</option>
-                                                        <option value="DIV-004">Royalty Cleaning</option>
-                                                        <option value="DIV-005">Customer Service</option>
-                                                        <option value="DIV-006">Night Calls</option>
-                                                        <option value="DIV-007">Owner Experience</option>
-                                                        <option value="DIV-008">Accounting</option>
-                                                        <option value="DIV-009">Tahoe Truckee</option>
-                                                        <option value="DIV-010">Training Development</option>
-                                                        <option value="DIV-011">Marketing</option>
+                                                        <option value="DEP-001">Business Development</option>
+                                                        <option value="DEP-002">Home Ambassadors</option>
+                                                        <option value="DEP-003">Book That Condo</option>
+                                                        <option value="DEP-004">Royalty Cleaning</option>
+                                                        <option value="DEP-005">Customer Service</option>
+                                                        <option value="DEP-006">Night Calls</option>
+                                                        <option value="DEP-007">Owner Experience</option>
+                                                        <option value="DEP-008">Accounting</option>
+                                                        <option value="DEP-009">Tahoe Truckee</option>
+                                                        <option value="DEP-010">Training Development</option>
+                                                        <option value="DEP-011">Marketing</option>
                                                     </select>    
                                                 </div>
                                             </div>
@@ -108,9 +110,9 @@
                                                     <div class="input-group-addon">
                                                         Position
                                                     </div>
-                                                    <select class="form-control form-control-sm" id="request_division" name="" onchange="tabCategory('');">
-                                                        <option value="DIV-011">Team Leader</option>
-                                                        <option value="DIV-008">Member</option>
+                                                    <select class="form-control form-control-sm" id="acc_position_stat" name="acc_position_stat" >
+                                                        <option value="1">Team Leader</option>
+                                                        <option value="0">Member</option>
 
                                                     </select>    
                                                 </div>
@@ -122,9 +124,9 @@
                                                     <div class="input-group-addon">
                                                         Job Status
                                                     </div>
-                                                    <select class="form-control form-control-sm" id="request_division" name="" onchange="tabCategory('');">
-                                                        <option value="DIV-011">Regular/Full Time</option>
-                                                        <option value="DIV-008">Part Time</option>
+                                                    <select class="form-control form-control-sm" id="acc_job_status" name="acc_job_status" onchange="tabCategory('');">
+                                                        <option value="Regular/Full Time">Regular/Full Time</option>
+                                                        <option value="Part Time">Part Time</option>
 
                                                     </select> 
                                                 </div>
@@ -136,9 +138,9 @@
                                                     <div class="input-group-addon">
                                                         Pay Period
                                                     </div>
-                                                    <select name="reimbursement_payment_mode" class="form-control">
-                                                        <option  value="1">Monthly</option>
-                                                        <option value="2">Twice a month</option>
+                                                    <select name="acc_pay_period" id="acc_pay_period" class="form-control">
+                                                        <option  value="Monthly">Monthly</option>
+                                                        <option value="Semi-Monthly">Semi-Monthly</option>
                                                         <!--<option value="0.5">Half Day</option>-->
                                                     </select>
                                                 </div>
@@ -151,9 +153,8 @@
                                                     <div class="input-group-addon">
                                                         Referral Person
                                                     </div>
-                                                    <select name="reimbursement_payment_mode" class="form-control">
-                                                        <option  value="1">None</option>
-
+                                                    <select name="acc_referall_person" id="acc_referall_person" class="form-control">
+                                                       
                                                     </select>
                                                 </div>
                                             </div>
@@ -188,7 +189,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn pull-right"  name="save_leave" style="background-color:#3ED03E;">Save</buton>
+                <button onclick="approveEmployeeAcc()" class="btn pull-right"  name="save_leave" style="background-color:#3ED03E;">Save</buton>
                
                 <button class="btn pull-left"  name="cancel_leave" onclick="closeModal()"  style="background-color:#F8665E;">Request Cancellation</button>
             </div>

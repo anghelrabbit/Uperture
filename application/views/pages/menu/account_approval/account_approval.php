@@ -27,9 +27,9 @@
                                                 <tr>
                                                     <th style="padding-right: 70px">Activate?</th>
                                                     <th >Name</th>
-                                                    <th style="white-space:nowrap;padding-right: 100px">Address</th>
-                                                    <th style="white-space:nowrap;padding-right: 150px">Contact Number</th>
+                                                    <!--<th style="white-space:nowrap;padding-right: 100px">Address</th>-->
                                                     <th style="white-space:nowrap;padding-right: 150px">Email<br> 
+                                                    <th style="white-space:nowrap;padding-right: 150px">Contact Number</th>
                                                        </th>
                                                 </tr>
                                             </thead>
