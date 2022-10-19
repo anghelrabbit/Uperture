@@ -40,6 +40,24 @@ class model_employee extends MY_Model {
         $query = $this->epay_db->get();
         return $query->result();
     }
+    public function FetchEmployeeDept($deptcode) {
+        $this->epay_db->select("deptname")
+                ->from('tbl_department')
+                ->where('deptcode', $deptcode);
+
+        $query = $this->epay_db->get();
+        return $query->result();
+    }
+    
+    
+    public function FetchEmployeeReferalPerson($referral_person) {
+        $this->epay_db->select("lastname, firstname")
+                ->from('tbl_masterlist')
+                ->where('profileno', $referral_person);
+
+        $query = $this->epay_db->get();
+        return $query->result();
+    }
 
     public function FetchEmployeesReport($where, $structure) {
         $this->epay_db->select('*')
@@ -73,6 +91,7 @@ class model_employee extends MY_Model {
                 ->from('tbl_masterlist');
         if (!isset($where['status'])) {
             $this->epay_db->where('status', 1);
+            $this->epay_db->where('is_Payroll', 0);
         }
         if (count($where) > 0) {
             if (isset($where['lastname']) != '') {

@@ -33,20 +33,21 @@
                             <thead style="background-color:#2692D0;color:white;">
                                 <tr>
                                     <th></th>
-                                    <th><center>Action</center></th>
+                                   <th style="padding-right: 70px"><center>Action</center></th>
 
                             <th style="white-space:nowrap;">Employee
                                 <br>
                                 <input name="201_lastname" class="form-control" type="text" placeholder="Lastname" style="color:black"/>
                                 <input name="201_firstname" class="form-control" type="text"  placeholder="Firstname" style="color:black"/>
                             </th>
+                            <th><center>Username</center></th>
                             <th style="white-space:nowrap;">
                                 Years of Service
                                 <br>
                                 <input  type="number" class="form-control" placeholder="Years" style="color:black;width:100px" name="201_years" />
                                 <input  type="number" class="form-control" placeholder="Months" style="color:black;width:90px" name="201_months"/>
                             </th>
-                            <th><center>Birth date</center></th>
+
                             <th>
                                 Department<br>
                                 <select class="form-control" name="201_department">
@@ -63,13 +64,15 @@
                                     <option value="DIV-012">Training Development</option>
                                 </select>
                             </th>
-                            <!--<th><center>Present Address</center></th>-->
                             <th><center>Position</center></th>
                             <th><center>Job Status</center></th>
                             <th><center>Date Hired</center></th>
                             <th><center>Referral Person</center></th>
                             <th><center>PTO Credentials</center></th>
                             <th><center>Sick Leave Credentials</center></th>
+                            <th><center>MBTI Result</center></th>
+                            <th><center>DISC Result</center></th>
+                            <th><center>Resume</center></th>
 
                             </tr>
 

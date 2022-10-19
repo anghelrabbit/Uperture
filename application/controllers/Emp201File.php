@@ -37,7 +37,7 @@ class Emp201File extends MY_Controller {
                 'assets/vendors/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js',
                 'assets/vendors/dist/js/adminlte.min.js',
                 'assets/myjs/utilities/structure.js',
-//                'assets/myjs/reports/201file/201_file.js'
+                'assets/myjs/reports/201file/201_file.js'
             );
 
             $this->InspectUser('menu/pages/reports/201_file', $data);
@@ -97,25 +97,40 @@ class Emp201File extends MY_Controller {
         $emp = $this->M_employee->FetchEmployeeTable(1, $structure_string, $column_array, $this->CleanArray($where));
         foreach ($emp as $row) {
             $job = $this->M_employee->FetchJobposition($this->CleanArray(array('jobcode' => $row->jobcode)));
-            $is_hr = 0;
-            $roles = $this->CheckRole($row);
-            if (isset($roles['HR'])) {
-                $is_hr = 1;
-            }
-            $sub_array = array();
-            $sub_array[] = '<button type="button" class="btn btn-block btn-success" onclick="retrieveAccount(' . "'" . $row->profileno . "'" . ')">View 201 File</button>';
-            if ($is_hr == 1 || $this->session->userdata('profileno') == '08162019094725562PWD') {
-                $sub_array[] = '<span class="btn btn-primary" style="width:40px" onclick="directToUserProfile(' . "'" . $row->profileno . "'" . ')"><i class="fas fa-user"></i></span>&nbsp;<span class="btn" style="background-color:#3ED03E;color:white;width:40px" onclick="retrieveAccount(' . "'" . $row->profileno . "'" . ')"><i class="fas fa-lock-open"></i></span>';
-            } else {
-                $sub_array[] = '';
-            }
+
+            $dept = $this->M_employee->FetchEmployeeDept($row->depID);
+            $refperson = $this->M_employee->FetchEmployeeReferalPerson($row->referral_person);
+
+
+
             $jobnem = (count($job) > 0) ? $job[0]->jobname : '';
-            $sub_array[] = $row->biometric;
-            $sub_array[] = $row->empid;
+
+            $sub_array = array();
+
+
+//            $sub_array[] = '<button type="button" class="btn btn-success" onclick="retrieveAccount(' . "'" . $row->profileno . "'" . ')">View 201 File</button>';
+
+            $sub_array[] = '';
+
+
+            if ($jobnem != 'HR') {
+                $sub_array[] = "<button class='btn btn-primary' onclick='retrieveAccount(" . '"' . $row->profileno . '"' . ")' ><i class='fas fa-user' style='font-size:18px'></i></button> " .
+                        "<button class='btn' onclick='directToUserProfile(2, " . '"' . $row->profileno . '"' . ")'  style='background-color:#FF392E;color:white'><i class='fas fa-lock-open' style='font-size:18px'></i></button> ";
+            } else {
+                $sub_array[] = "<button class='btn btn-primary' onclick='retrieveAccount(2, " . '"' . $row->profileno . '"' . ")' ><i class='fas fa-user' style='font-size:18px'></i></button> ";
+            }
+
+
+
             $sub_array[] = $row->lastname . ", " . $row->firstname . " " . $row->midname . ' <label style="font-size:13px"> (' . $jobnem . ')</label>';
+            $sub_array[] = $row->username;
             $sub_array[] = $this->CalculateYearsOfService($row->datehired);
-            $sub_array[] = date('m/d/Y', strtotime($row->birthdate));
-            $sub_array[] = $row->sex;
+            $sub_array[] = (count($dept) > 0) ? $dept[0]->deptname : '';
+            $sub_array[] = ($row->position_stat == 1) ? 'Team Lead' : 'Team Member';
+            $sub_array[] = ($row->empstatus == 1) ? 'Full Time' : 'Part Time';
+            $sub_array[] = date('m/d/Y', strtotime($row->datehired));
+            $sub_array[] = (count($refperson) > 0) ? $refperson[0]->lastname . ", " . $refperson[0]->firstname : 'NONE';
+
             $sub_array[] = $row->contact;
             $sub_array[] = '';
             $data[] = $sub_array;

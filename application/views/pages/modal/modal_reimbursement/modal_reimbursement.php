@@ -133,8 +133,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn pull-right  hidden"  name="save_leave" style="background-color:#3ED03E;">Save</buton>
-                    <button class="btn pull-right"  name="remove_leave"  style="background-color:#F8665E;">Remove</button>
+                <button class="btn pull-right"  name="save_leave" style="background-color:#3ED03E;">Save</buton>
+                   
                     <button class="btn pull-right"  name="cancel_leave"  style="background-color:#F8665E;">Request Cancellation</button>
             </div>
         </div>

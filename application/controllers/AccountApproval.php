@@ -111,9 +111,10 @@ class AccountApproval extends MY_Controller {
                         'empstatus' => $this->input->post('acc_job_status'),
                         'paysched' => $this->input->post('acc_pay_period'),
                         'referral_person' => $this->input->post('acc_referall_person'),
+                        'resume' => $this->input->post('acc_resume'),
                         'approved_by' => $this->session->userdata('profileno'),
                         'approve_date' => date("Y-m-d h:i:s"),
-//                                'resume' => $action,
+                             
                     ), $this->input->post('txtprofileno'));
         
         echo json_encode($result);

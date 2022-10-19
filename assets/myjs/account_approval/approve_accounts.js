@@ -104,7 +104,7 @@ function fetchAllEmployees() {
 
 
         for (var index = 0; index <= result.length - 1; index++) {
-            console.log();
+//            console.log();
             $('#acc_referall_person').append(
                     "<option value=" + result[index].profileno + ">" + result[index].firstname + " " + result[index].lastname + "</option>"
                     );
@@ -127,16 +127,27 @@ function fetchProfileNoDetails() {
 }
 
 function approveEmployeeAcc() {
+
+
+    var image = $('#acc_resume').prop('files')[0];
+    var form = document.getElementById("add_account_form");
+    var form_data = new FormData(form);
+    form_data.append("file", image, $('#acc_resume').val());
+
+
     $.ajax({
         data: {action: $('#txtaction').val(),
-               acc_doh: $('#acc_doh').val(),
-               acc_department: $('#acc_department').val(),
-               acc_position_stat: $('#acc_position_stat').val(),
-               acc_job_status: $('#acc_job_status').val(),
-               acc_pay_period: $('#acc_pay_period').val(),
-               acc_referall_person: $('#acc_referall_person').val(),
-               txtprofileno: $('#txtprofileno').val(),
+            acc_doh: $('#acc_doh').val(),
+            acc_department: $('#acc_department').val(),
+            acc_position_stat: $('#acc_position_stat').val(),
+            acc_job_status: $('#acc_job_status').val(),
+            acc_pay_period: $('#acc_pay_period').val(),
+            acc_referall_person: $('#acc_referall_person').val(),
+            txtprofileno: $('#txtprofileno').val(),
+            acc_resume: $('#acc_resume').val()
         },
+       
+        
         url: 'AccountApproval/ApproveAccount',
         type: 'POST',
         dataType: 'json'
@@ -152,6 +163,7 @@ function approveEmployeeAcc() {
                 function ()
                 {
                     swal.close();
+                    $('div[name=modal_add_account_details]').modal('hide');
                     fetchRegistry();
                 });
 

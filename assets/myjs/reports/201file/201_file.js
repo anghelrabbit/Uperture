@@ -5,6 +5,7 @@
  */
 
 var emp201_table = null;
+
 $(function () {
     FetchRole().done(function () {
         tabCategory();
@@ -191,10 +192,12 @@ function search_years_service() {
 }
 var uname = '';
 var pass = '';
+
+
 function retrieveAccount(profileno) {
     uname = '';
     pass = '';
-    $('input[name=profile_password]').val('');
+   
     $.ajax({
         type: 'POST',
         data: {
@@ -203,18 +206,15 @@ function retrieveAccount(profileno) {
         url: 'Emp201File/FetchSpecificEmployee',
         dataType: 'json'
     }).done(function (result) {
-        $('h3[name=profile_name]').empty();
-        $('h5[name=profile_dept]').empty();
-        $('img[name=image_profile]').attr("src", "data:image;base64," + result['profile_pic']);
-        $('span[name=profile_username]').empty();
-        $('span[name=profilen_password]').empty();
-        $('span[name=profile_username]').append('************');
-        $('span[name=profilen_password]').append('************');
-        $('h3[name=profile_name]').append(result['lastname'] + ", " + result['firstname']);
-        $('h5[name=profile_dept]').append(result['department'][0]['name']);
-        uname = result['username'];
-        pass = result['password'];
-        $('div[name=lock_overlay]').removeClass('hidden');
+//        $('h3[name=profile_name]').empty();
+//        $('h5[name=profile_dept]').empty();
+//        $('img[name=image_profile]').attr("src", "data:image;base64," + result['profile_pic']);
+//   
+//        $('h3[name=profile_name]').append(result['lastname'] + ", " + result['firstname']);
+//        $('h5[name=profile_dept]').append(result['department'][0]['name']);
+//        uname = result['username'];
+//        pass = result['password'];
+//        
         $('div[name=modal_account]').modal({
             show: true,
             backdrop: 'static',
@@ -279,4 +279,5 @@ $('input[name=201_years]').on('click', function (e) {
 $('input[name=201_months]').on('click', function (e) {
     e.stopPropagation();
 });
+
 

@@ -125,8 +125,8 @@
                                                         Job Status
                                                     </div>
                                                     <select class="form-control form-control-sm" id="acc_job_status" name="acc_job_status" onchange="tabCategory('');">
-                                                        <option value="Regular/Full Time">Regular/Full Time</option>
-                                                        <option value="Part Time">Part Time</option>
+                                                        <option value="1">Regular/Full Time</option>
+                                                        <option value="0">Part Time</option>
 
                                                     </select> 
                                                 </div>
@@ -159,13 +159,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         <div class="col-lg-12 col-md-12 col-sm-12" >
                                             <div class="form-group">
                                                 <div class="input-group " id="" style="color:black">
                                                     <div class="input-group-addon">
                                                         Resume
                                                     </div>
-                                                    <input type="file" class="form-control" id="worksched_in">
+                                                    <input type="file" class="form-control" id="acc_resume">
                                                 </div>
                                             </div>
                                         </div>
