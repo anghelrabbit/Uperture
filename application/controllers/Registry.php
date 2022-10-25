@@ -73,7 +73,6 @@ class Registry extends MY_Controller {
         $profileno = $datecode . $timecode . "PWD";
 
 
-
         $data = array(
             'lastname' => $this->input->post('register_lastname'),
             'firstname' => $this->input->post('register_firstname'),

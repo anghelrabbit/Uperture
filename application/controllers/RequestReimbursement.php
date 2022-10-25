@@ -7,9 +7,9 @@
  */
 
 /**
- * Description of RequestForms
+ * Description of RequestReimbursement
  *
- * @author MIS
+ * @author angel bunny
  */
 class RequestReimbursement extends MY_Controller {
 
@@ -19,11 +19,7 @@ class RequestReimbursement extends MY_Controller {
         $this->load->helper('form');
         $this->load->helper('sendsms_helper');
 
-        $this->load->model('model_workschedule', 'M_workschedule');
-        $this->load->model('model_leave', 'M_leave');
-        $this->load->model('model_undertime', 'M_undertime');
-        $this->load->model('model_overtime', 'M_overtime');
-        $this->load->model('model_changeschedule', 'M_changeschedule');
+        $this->load->model('model_reimbursement', 'M_reimbursement');
     }
 
     public function index() {
@@ -80,56 +76,30 @@ class RequestReimbursement extends MY_Controller {
         }
     }
 
-    public function FetchWorkschedule() {
+    public function SaveReimbursementRequest() {
 
-        $date = date('Y-m-d', strtotime($this->input->post('date')));
-        $id = $this->input->post('id');
-        $form = $this->input->post('form');
-        $result = $this->M_workschedule->FetchSpecificSchedule($date);
-        $data = array();
-        $data['date_in'] = $date;
-        $data['date_out'] = $date;
-        $data['time_in'] = 'Day Off';
-        $data['time_out'] = 'Day Off';
-        $data['has_schedule'] = false;
-        $data['has_undertime'] = false;
-        if (count($result) > 0) {
-            if ($form == 1) {
-                $res = $this->M_undertime->CheckExistingUndertime($result[0]->timein);
-                if (count($res) > 0 && $res[0]->id != $id) {
-                    $data['has_undertime'] = true;
-                }
-            }
-            $data['date_in'] = date('Y-m-d', strtotime($result[0]->timein));
-            $data['date_out'] = date('Y-m-d', strtotime($result[0]->timeout));
-            $data['time_in'] = $this->ConvertTo24Format($result[0]->timein);
-            $data['time_out'] = $this->ConvertTo24Format($result[0]->timeout);
-            $data['has_schedule'] = true;
-        }
-        echo json_encode($data);
-    }
 
-    public function RemoveForm() {
-        $id = $this->input->post('id');
-        $form = array(1 => 'tbl_undertime', 2 => 'tbl_change_schedule', 3 => 'tbl_overtime');
-        echo json_encode($this->MY_Model->DeleteForm($id, $form[$this->input->post('category')]));
-    }
+        $currentdate = date("Y-m-d h:i:s");
+        $splitcurrentdate = explode(" ", $currentdate);
+        $curdate = explode("-", $splitcurrentdate[0]);
+        $curtime = explode(":", $splitcurrentdate[1]);
+        $datecode = $curdate[1] . $curdate[2] . $curdate[0];
+        $timecode = $curtime[0] . $curtime[1] . $curtime[2];
+        $reimbursement_id = $datecode . $timecode . "REIM";
 
-    public function RequestCancellation() {
-        $id = $this->input->post('id');
-        $category = $this->input->post('category');
-        $data = array();
-        $data['is_deleted'] = 1;
-        $data['request_cancel_date'] = date('Y-m-d H:i:s');
-        if ($category == 0) {
-            echo json_encode($this->M_leave->SaveUpdateLeave($id, $this->CleanArray($data)));
-        } else if ($category == 1) {
-            echo json_encode($this->M_undertime->SaveUpdateUndertime($this->CleanArray($data), $id));
-        } else if ($category == 2) {
-            echo json_encode($this->M_changeschedule->SaveUpdateChangeSchedule($id, $this->CleanArray($data)));
-        } else if ($category == 3) {
-            echo json_encode($this->M_overtime->SaveUpdateOvertime($this->CleanArray($data), $id));
-        }
+        $data = array(
+            'profileno' => $this->session->userdata('profileno'),
+            'reimbursed_item' => $this->input->post('reimbursement_for'),
+            'full_amount' => $this->input->post('reimbursement_amount'),
+            'payment_mode' => $this->input->post('reimbursement_payment_mode'),
+            'regularity' => $this->input->post('reimbursement_regularity'),
+            //0=request,1=approved,2=payed
+            'status' => 0,
+            'reimbursement_id' => $reimbursement_id,
+            'request_date' => date("Y-m-d h:i:s"),
+        );
+
+        echo json_encode($this->M_reimbursement->SaveReimbursementRequest($data));
     }
 
 }

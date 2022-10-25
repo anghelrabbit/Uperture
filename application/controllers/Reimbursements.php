@@ -19,11 +19,8 @@ class Reimbursements extends MY_Controller {
         $this->load->helper('form');
         $this->load->helper('sendsms_helper');
 
-        $this->load->model('model_workschedule', 'M_workschedule');
-        $this->load->model('model_leave', 'M_leave');
-        $this->load->model('model_undertime', 'M_undertime');
-        $this->load->model('model_overtime', 'M_overtime');
-        $this->load->model('model_changeschedule', 'M_changeschedule');
+        $this->load->model('model_reimbursment', 'M_reimbursement');
+      
     }
 
     public function index() {

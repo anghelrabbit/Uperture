@@ -60,7 +60,7 @@
                                                     <div class="input-group-addon">
                                                         Reimbursement For:
                                                     </div>
-                                                    <input name="reimbursement_for" class="form-control ">
+                                                    <input id="reimbursement_for" class="form-control ">
                                                 </div>
                                             </div>
                                         </div>
@@ -70,7 +70,7 @@
                                                     <div class="input-group-addon">
                                                         Full amount in PHP
                                                     </div>
-                                                    <input type="number" name="reimbursement_amount" class="form-control ">
+                                                    <input type="number" id="reimbursement_amount" class="form-control ">
                                                 </div>
                                             </div>
                                         </div>
@@ -80,7 +80,7 @@
                                                     <div class="input-group-addon">
                                                         Payment Mode
                                                     </div>
-                                                    <select name="reimbursement_payment_mode" class="form-control">
+                                                    <select id="reimbursement_payment_mode"  onchange="checkIfInstallment()" class="form-control">
                                                         <option  value="1">Full Payment</option>
                                                         <option value="2">Installment</option>
                                                         <!--<option value="0.5">Half Day</option>-->
@@ -94,7 +94,7 @@
                                                     <div class="input-group-addon">
                                                         Regularity
                                                     </div>
-                                                    <select name="reimbursement_regularity" class="form-control">
+                                                    <select id="reimbursement_regularity" disabled class="form-control">
                                                         <option value="1">Monthly</option>
                                                         <option  value="2">Quarterly</option>
                                                         <option value="3">Annually</option>
@@ -107,9 +107,19 @@
                                             <div class="form-group">
                                                 <div class="input-group " id="" style="color:black">
                                                     <div class="input-group-addon">
+                                                        Amount
+                                                    </div>
+                                                    <input type="number" id="reimbursement_amount_to_pay" disabled class="form-control ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12" >
+                                            <div class="form-group">
+                                                <div class="input-group " id="" style="color:black">
+                                                    <div class="input-group-addon">
                                                         Upload Receipt
                                                     </div>
-                                                    <input type="file" name="reimbursement_receipt" class="form-control ">
+                                                    <input type="file" id="reimbursement_receipt" class="form-control ">
                                                 </div>
                                             </div>
                                         </div>
@@ -133,7 +143,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn pull-right"  name="save_leave" style="background-color:#3ED03E;">Save</buton>
+                <button class="btn pull-right"  name="save_request_reimbursement" onclick="saveReimbursementRequest()" style="background-color:#3ED03E;">Save</buton>
                    
                     <button class="btn pull-right"  name="cancel_leave"  style="background-color:#F8665E;">Request Cancellation</button>
             </div>
