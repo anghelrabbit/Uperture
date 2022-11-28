@@ -358,7 +358,7 @@ class MY_Controller extends CI_Controller {
                 10 => array('field' => 'profile_address', 'label' => 'Address', 'rules' => 'required'),
             )
         );
-      
+
         $this->form_validation->set_rules($forms[$form]);
     }
 
@@ -1421,4 +1421,11 @@ class MY_Controller extends CI_Controller {
     //        }
     //        return $structure;
     //    }
+
+        function asPhpMoney($value) {
+        if ($value < 0)
+            return "-" . asPhpMoney(-$value);
+        return 'PHP' . number_format($value, 2);
+    }
+
 }

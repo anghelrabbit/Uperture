@@ -107,7 +107,7 @@
                                             <div class="form-group">
                                                 <div class="input-group " id="" style="color:black">
                                                     <div class="input-group-addon">
-                                                        Amount
+                                                        Amount to pay in PHP
                                                     </div>
                                                     <input type="number" id="reimbursement_amount_to_pay" disabled class="form-control ">
                                                 </div>

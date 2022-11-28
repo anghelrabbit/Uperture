@@ -3,7 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/SilverSummit/application/controllers/Reimbursements.php</file>
+            <file>file:/C:/xampp/htdocs/SilverSummit/application/controllers/RequestReimbursement.php</file>
+            <file>file:/C:/xampp/htdocs/SilverSummit/assets/myjs/my_account/request_forms/reimbursements.js</file>
+            <file>file:/C:/xampp/htdocs/SilverSummit/application/models/model_employee.php</file>
+            <file>file:/C:/xampp/htdocs/SilverSummit/application/views/pages/menu/my_account/request_forms/tabs/pending_reimbursement.php</file>
+            <file>file:/C:/xampp/htdocs/SilverSummit/application/controllers/AccountApproval.php</file>
+            <file>file:/C:/xampp/htdocs/SilverSummit/application/core/MY_Controller.php</file>
+            <file>file:/C:/xampp/htdocs/SilverSummit/application/core/MY_Model.php</file>
+            <file>file:/C:/xampp/htdocs/SilverSummit/application/models/model_reimbursement.php</file>
+            <file>file:/C:/xampp/htdocs/SilverSummit/application/views/pages/menu/my_account/request_forms/request_reimbursement.php</file>
         </group>
     </open-files>
 </project-private>

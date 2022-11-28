@@ -1,7 +1,7 @@
   
 
 <section class="content">
-
+<input type="text"  value="<?php echo $this->session->userdata('profileno') ?>" name="emp_profilenumber" class="hidden">
     <div class="row">
         <div class="col-lg-3">
 
@@ -29,7 +29,7 @@
 //                                    }
 //                                }
 //                            } else {
-                                echo $jobposition;
+                            echo $jobposition;
 //                            }
                             ?>
                         </h5>
@@ -40,7 +40,7 @@
                             <li><a href="#">Job Status<span class="pull-right"><?= $employeeprofile[0]->empstatus ?></span></a></li>
                             <li><a href="#">Date Hired<span class="pull-right"><?= date('F d, Y', strtotime($employeeprofile[0]->datehired)) ?></span></a></li>
                             <li><a href="#">Department<span class="pull-right"> Marketing</span></a></li>
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -99,14 +99,14 @@
                                         <div class="input-group" style="border:solid;border-color: #2692D0">
                                             <input type="password" name="profile_password" class="form-control " placeholder="password" style="margin-left:-1px"  onkeypress="profile_account_keypress(event)" onkeyup="enable_enterkey()">
                                             <div class="input-group-btn" >
-                                                <span type="button" class="btn "   ><i class="fa fa-arrow-right text-muted" onclick="check_profile_account()"></i></span>
+                                                <span type="button" class="btn "   ><i class="fa fa-arrow-right text-muted" onclick="s()"></i></span>
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class=" text-center" style="color:#D2D6DE">
-                                    .
+
                                 </div>
 
                             </div>
@@ -116,7 +116,6 @@
                 </div>
             <?php } ?>
         </div>
-
         <div class="col-md-5 col-lg-5">
             <div class="box box-solid ">
                 <div class="box-header with-border ">
@@ -125,7 +124,7 @@
                         <li   class="" onclick="tab_selection(1)" ><a   name="contact_tab" href="#contactinfo" data-toggle="tab" style="font-weight: bold;">Contacts</a></li>
                         <li   class="" onclick="tab_selection(2)" ><a   name="contribution_tab" href="#contributioninfo" data-toggle="tab" style="font-weight: bold;">Contribution</a></li>
                         <li   class="" onclick="tab_selection(3)" ><a   name="integration_tab" href="#integrationinfo" data-toggle="tab" style="font-weight: bold;">Salary Integrations</a></li>
-                         <?php if (($this->session->userdata('profileno') == $employeeprofile[0]->profileno && $this->session->userdata('oncall') == 0) || $this->session->userdata('hr') == 1) { ?>
+                        <?php if (($this->session->userdata('profileno') == $employeeprofile[0]->profileno && $this->session->userdata('oncall') == 0) || $this->session->userdata('hr') == 1) { ?>
                             <!--<li   onclick="payslip_table();tab_selection(1)" ><a name="payslip_tab" href="#worksched" data-toggle="tab" style="font-weight: bold;"> Payslip  </a> </li>-->
                         <?php } ?>
                         <li class="box-tools pull-right">
@@ -154,9 +153,15 @@
                             <div class="tab-pane" id="worksched">
                                 <?php $this->load->view('pages/menu/my_account/profile/tabs/payslip'); ?>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn pull-right btn-block " onclick="saveEmpInfo()" name="save_reserve_btn" style="background-color:#3ED03E;">Save</button>
             </div>
         </div>
 
