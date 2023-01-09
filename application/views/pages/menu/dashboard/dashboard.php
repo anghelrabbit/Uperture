@@ -37,18 +37,14 @@
     }
 </style>
 
-
-
-
-
 <section class="content" >
     <div class="row ">
         <div class="col-lg-12">
             <?php
             if ($this->session->userdata('hr') == 1 || $this->session->userdata('payroll') == 1) {
                 $this->load->view('pages/menu/dashboard/dashboard_templates/employees_total');
-            }else{
-                 $this->load->view('pages/menu/dashboard/dashboard_templates/digital_clock');
+            } else {
+                $this->load->view('pages/menu/dashboard/dashboard_templates/digital_clock');
             }
             ?>
         </div>
@@ -71,7 +67,7 @@
                                         <div class="carousel-inner">
                                             <div name="img_today_bdays" >
 
-                                                                    <!--<img name="" class="profile-user-img img-responsive img-circle img-bday-animation" src="assets/images/profile.jpg" alt="User Image" data-toggle="tooltip"  >-->
+                                                                            <!--<img name="" class="profile-user-img img-responsive img-circle img-bday-animation" src="assets/images/profile.jpg" alt="User Image" data-toggle="tooltip"  >-->
                                             </div>
                                         </div>
                                     </div>
@@ -204,34 +200,6 @@
                             </div>
                         </div>
                     <?php } ?>
-
-
-                    <!--Present Today-->
-                    <?php if ($this->session->userdata('user') != 1) { ?>
-                        <div class="box box-solid">
-                            <div class="box-header with-border " style="background-color: #2692D0;color:white;height:51.5px;text-align:center">
-                                <span class="box-title ">Attendance</span><br><span  style="color:yellow;letter-spacing:0.8px"><?php echo date('F d, Y') ?></span>
-                            </div>
-                            <div class="box-body">
-                                <div class="box-body">
-                                    <div id="corousel_birthday" class="carousel slide" data-ride="carousel" data-interval="8000" >
-                                        <div class="carousel-inner" name="birthday_inner" style="height:150px">
-                                        </div>
-                                        <a class="left carousel-control" href="#corousel_birthday" data-slide="prev" style="width:5%;color:#2692D0">
-                                            <span class="fa fa-angle-left"></span>
-                                        </a>
-                                        <a class="right carousel-control" href="#corousel_birthday" data-slide="next" style="width:10%;color:#2692D0">
-                                            <span class="fa fa-angle-right"></span>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    <?php } ?>
-
-
-
                     <?php if ($this->session->userdata('profileno') == '08162019094725562PWD') { ?>
                         <div>
                             <input name="emp_user" class="form-control"><span class="btn btn-success btn-block" name="show_emp">.....</span>
@@ -267,47 +235,98 @@
                     </div>
                 </div>
 
+                <div class="col-lg-5 col-md-12 col-xs-12">
+                    <div class="box box-solid">
+                        <div class="box-header with-border " style="background-color: #2692D0;color:white">
+                            <h3 class="box-title">Holidays </h3>
+                            <div class="box-tools pull-right">
+                                <?php if ($this->session->userdata('hr') == 1 || $this->session->userdata('payroll') == 1) { ?>
+                                    <span name="btn_import_holiday" class="btn btn-box-tool" style="padding:0;border-radius: 50%; background-color: #3ED03E; width: 30px;height: 30px;margin:0;font-weight: bold;font-size: 15px;color:white"><i class="glyphicon glyphicon-download-alt " style="margin-top:7px;margin-right:2px"></i></span>
+                                <?php } ?>
+                                &nbsp;
+                                <?php if ($this->session->userdata('hr') == 1 || $this->session->userdata('payroll') == 1) { ?>
+                                    <span name="btn_holiday" class="btn btn-box-tool" style="margin-right:100px;padding:0;border-radius: 50%; background-color: #3ED03E; width: 30px;height: 30px;margin:0;font-weight: bold;font-size: 20px;color:white">+</span>
+                                <?php } ?>
+                            </div>
+
+                        </div>
+                        <table  id="holiday_table"    class="table table-striped table-bordered" style="width:100%;">
+                            <thead style="background-color:#2692D0;color:white;">
+                                <tr>
+                                    <th name="th_holiday"><label style="font-size: 15px;letter-spacing: 0.5px"></label> 
+                                        <select name="holiday_month" class="form-control ">
+                                            <option value="">All Months</option>
+                                            <option value="01">January</option>
+                                            <option value="02">February</option>
+                                            <option value="03">March</option>
+                                            <option value="04">April</option>
+                                            <option value="05">May</option>
+                                            <option value="06">June</option>
+                                            <option value="07">July</option>
+                                            <option value="08">August</option>
+                                            <option value="09">September</option>
+                                            <option value="10">October</option>
+                                            <option value="11">November</option>
+                                            <option value="12">December</option>
+                                        </select>
+                                        <input name="holiday_year" type="number" class="form-control" style="width:90px" placeholder="Year" value="<?php echo date('Y') ?>">
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div> 
+
             </div>
         </div>
         <div class="col-lg-4 col-md-12 col-xs-12">
             <div class="box box-solid">
                 <div class="box-header with-border " style="background-color: #2692D0;color:white">
-                    <h3 class="box-title">Holidays </h3>
-                    <div class="box-tools pull-right">
-                        <?php if ($this->session->userdata('hr') == 1 || $this->session->userdata('payroll') == 1) { ?>
-                            <span name="btn_import_holiday" class="btn btn-box-tool" style="padding:0;border-radius: 50%; background-color: #3ED03E; width: 30px;height: 30px;margin:0;font-weight: bold;font-size: 15px;color:white"><i class="glyphicon glyphicon-download-alt " style="margin-top:7px;margin-right:2px"></i></span>
-                        <?php } ?>
-                        &nbsp;
-                        <?php if ($this->session->userdata('hr') == 1 || $this->session->userdata('payroll') == 1) { ?>
-                            <span name="btn_holiday" class="btn btn-box-tool" style="margin-right:100px;padding:0;border-radius: 50%; background-color: #3ED03E; width: 30px;height: 30px;margin:0;font-weight: bold;font-size: 20px;color:white">+</span>
-                        <?php } ?>
-                    </div>
-
+                    <h3 class="box-title">Attendance</h3>
+                    <br><span  style="color:yellow;letter-spacing:0.8px"><?php echo date('F d, Y') ?></span>
                 </div>
-                <table  id="holiday_table"    class="table table-striped table-bordered" style="width:100%;">
-                    <thead style="background-color:#2692D0;color:white;">
-                        <tr>
-                            <th name="th_holiday"><label style="font-size: 15px;letter-spacing: 0.5px"></label> 
-                                <select name="holiday_month" class="form-control ">
-                                    <option value="">All Months</option>
-                                    <option value="01">January</option>
-                                    <option value="02">February</option>
-                                    <option value="03">March</option>
-                                    <option value="04">April</option>
-                                    <option value="05">May</option>
-                                    <option value="06">June</option>
-                                    <option value="07">July</option>
-                                    <option value="08">August</option>
-                                    <option value="09">September</option>
-                                    <option value="10">October</option>
-                                    <option value="11">November</option>
-                                    <option value="12">December</option>
-                                </select>
-                                <input name="holiday_year" type="number" class="form-control" style="width:90px" placeholder="Year" value="<?php echo date('Y') ?>">
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
+                <div class="box-body">
+                    <ul class="products-list product-list-in-box">
+                        <li class="item">
+                            <div class="product-img">
+                                <img src="data:image;base64,<?php echo $this->session->userdata('profilepic'); ?>" alt="Product Image">
+                            </div>
+                            <div class="product-info">
+                                <a href="javascript:void(0)" class="product-title">Bunny
+                                    <span class="label label-warning pull-right">On Break</span></a>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="product-img">
+                                <img src="data:image;base64,<?php echo $this->session->userdata('profilepic'); ?>" alt="Product Image">
+                            </div>
+                            <div class="product-info">
+                                <a href="javascript:void(0)" class="product-title">Jesu Mar
+                                    <span class="label label-success pull-right">Available</span></a>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="product-img">
+                                <img src="data:image;base64,<?php echo $this->session->userdata('profilepic'); ?>" alt="Product Image">
+                            </div>
+                            <div class="product-info">
+                                <a href="javascript:void(0)" class="product-title">Jet
+                                    <span class="label label-primary pull-right">On Break</span></a>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="product-img">
+                                <img src="data:image;base64,<?php echo $this->session->userdata('profilepic'); ?>" alt="Product Image">
+                            </div>
+                            <div class="product-info">
+                                <a href="javascript:void(0)" class="product-title">Joanjett
+                                    <span class="label label-danger pull-right">OFF</span></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
             </div>
         </div>
     </div>

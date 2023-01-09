@@ -215,7 +215,7 @@ function retrieveAccount(profileno) {
 //        uname = result['username'];
 //        pass = result['password'];
 //        
-        $('div[name=modal_account]').modal({
+        $('div[name=modal_emp_profile]').modal({
             show: true,
             backdrop: 'static',
             keyboard: false

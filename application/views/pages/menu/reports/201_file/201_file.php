@@ -85,7 +85,7 @@
     </div>
 </section>
 
-<?php $this->load->view('pages/modal/modal_account/modal_account'); ?>       
+<?php $this->load->view('pages/modal/modal_report/modal_emp_profile'); ?>       
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
         $(".sidebar-menu").find(".active").removeClass("active");

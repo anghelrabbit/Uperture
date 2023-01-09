@@ -1,6 +1,6 @@
 <div class="row text-center" style="margin-top: -25px">
     <div class="container">
-        <div class="clock--wrapper">
+<!--        <div class="clock--wrapper">
             <div class="clock" data-locale="Africa/Algiers">
                 <svg class="clockface" width="150" height="150" viewBox="-150 -150 300 300">
                 <circle class="ring ring--seconds"  r="145"  pathlength='60' />
@@ -46,7 +46,7 @@
                 <h4>Central Time</h4>
                 </svg>
             </div>
-        </div>
+        </div>-->
 
     </div>
 </div>
